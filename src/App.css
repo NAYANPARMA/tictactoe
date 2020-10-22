@@ -1,38 +1,152 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color:#F7F7F7;
+  /* color: white; */
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+h1 {
+  margin: 2rem;
+  text-align: center;
+  color: #1f1f1f;
+  font-size: 24px;
+}
+
+
+.X {
+  color:#5BA3EF;
+}
+.O {
+  color: #F18942;
+}
+
+.info-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+h3 {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+li {
+  list-style: none;
+}
+
+.info-wrapper button {
+  background: white;
+  color: #1f1f1f;
+  font-weight: 800;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px lightgrey;
+  margin-top: 20px;
+}
+
+.game__players{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+
+.game__middle{ 
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  box-shadow: 0px 0px 5px grey;
+  border-radius: 25px;
+  background-color: white;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.left__point{
+  padding-left: 10px;
+  padding-right: 10px;
+  border-right: 2px solid lightgrey;
+  font-size: 10px;
+  color: #1f1f1f;
+}
+.right__point{
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 10px;
+  color: #1f1f1f;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+
+.app__continue{
+  background: white;
+  width: 100px;
+  color: #1f1f1f;
+  font-weight: 800;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px lightgrey;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app__firstpage > h1 {
+  text-align: center;
+  align-items: center;
+  font-size: 16px;
+}
+
+
+.app__firstpage {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.app__sign{
+  display: flex;
+  width: 80%;
+  justify-content: space-around;
+  margin-bottom: 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app__x , .app__o{
+  display: flex;
+  flex-direction: column;
+}
+
+.app__x > label {
+  color: #5BA3EF;
+  font-size: 50px;
+  font-weight: 900;
+}
+
+
+.app__o > label {
+  color: #F18942;
+  font-size: 50px;
+  font-weight: 900;
+}
+.app__x > input, .app__o > input {
+  color: lightgray;
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
 }

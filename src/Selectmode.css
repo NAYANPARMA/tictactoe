@@ -1,0 +1,32 @@
+.select__header > h1 {
+    font-size: 24px;
+}
+
+.select{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.select > div {
+    margin-bottom: 20px;
+}
+
+.select > button {
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 10px lightgray;
+    background-color: white;
+    color: #1f1f1f;
+    border: none;
+    outline: none;
+}
+
+.select > button:hover {
+    background-color: #5BA3EF;
+    color: white;
+    cursor: pointer;
+
+}
