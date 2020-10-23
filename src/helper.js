@@ -19,7 +19,7 @@ export const calculateWinner = (squares) => {
 }
 
 export const bestMove =  (squares, ai , human) =>{
-  console.log(squares);
+
   let board = [
     ['', '', ''],
     ['', '', ''],
@@ -39,10 +39,7 @@ export const bestMove =  (squares, ai , human) =>{
       
       if (board[i][j] == '') {
         board[i][j] = ai
-
-        console.log(i,j,board);
         let score = minimax(board, 0, false, squares,ai,human);
-        console.log(score);
         board[i][j] = '';
         if (score > bestScore) {
           bestScore = score;

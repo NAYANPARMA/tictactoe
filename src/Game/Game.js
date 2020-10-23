@@ -8,14 +8,28 @@ const Game = (props) => {
     const [stepNumber, setStepNumber] = useState(0);
     const [xIsNext, setXisNext] = useState(true);
     const [countx, setCountx] = useState(0);
-     const [counto, setCounto] = useState(0);
-
+    const [counto, setCounto] = useState(0);
+    const [firstturn , setAiturn] = useState(true)
     const [aiplay , setAiplay]  = useState(false)
     const winner = calculateWinner(history[stepNumber]);
-    let xO = (stepNumber < 9 && ! winner) ? xIsNext ? "X" : "O" : 'tie'
+    let xO 
+    if(props.x){
+        if(stepNumber%2 == 0){
+            xO = 'X'
+        } else {
+            xO = 'O'
+        }
+    }
+    if(props.o){
+        if(stepNumber%2 == 0){
+            xO = 'O'
+        } else {
+            xO = 'X'
+        }
+    }
     
     useEffect(() => {
-        const setcount = () => {
+        const setInitial = () => {
             if(winner == 'X'){  
                 let count = countx;
                 count = count + 1;
@@ -31,21 +45,25 @@ const Game = (props) => {
             } 
             if(props.o){
                 setXisNext(false)
+                
             }
 
             if(props.mode == 'AI'){
                 setAiplay(true)
             }
         }
-        return setcount()
+        return setInitial()
     }, [winner, props.x, props.o, props.mode])
 
+    
 
     useEffect(() => {
         const setValue  = async() => {
-            if(!xIsNext && stepNumber < 9){
-                const index =  await bestMove(history[stepNumber], 'O', 'X')
-                console.log(index);
+            if(stepNumber%2 == 1 && stepNumber < 9){
+                const human = props.x ? 'X' : 'O'
+                const AI = human == 'X' ? 'O' : 'X'
+                const index =  await bestMove(history[stepNumber], AI, human)
+               // console.log(index);
                 document.getElementById('button'+index).click();
             }
         }
@@ -57,9 +75,7 @@ const Game = (props) => {
     },[aiplay, history[stepNumber]])
 
     const handleClick = (i) => {
-        if(!xIsNext){
-            //console.log(i);
-        }
+       
         const historyPoint = history.slice(0, stepNumber + 1);
         const current = historyPoint[stepNumber];
         const squares = [...current];
@@ -72,25 +88,21 @@ const Game = (props) => {
         setXisNext(!xIsNext);
     };
 
-    const jumpTo = () => {
-        setStepNumber(0);
+    const jumpTo = async() => {
+        await setStepNumber(0);
         if(props.x){
             setXisNext(true)
         } 
         if(props.o){
+            // if(props.mode == 'AI' && stepNumber == 0){
+            //    // console.log(stepNumber);
+            //     setXisNext(true)
+            // } else {
+            //     setXisNext(false)
+            // }
             setXisNext(false)
         }    
     }
-
-    const renderMoves = () =>
-        history.map((_step, move) => {
-        const destination = move ? `Go to move #${move}` : "Play Again";
-        return (
-            <li key={move}>
-            <button onClick={() => jumpTo(move,destination)}>{destination}</button>
-            </li>
-        );
-        });
 
     return (
         <>
@@ -118,7 +130,7 @@ const Game = (props) => {
             </div>
             <h3>{
 
-                    (stepNumber == 9 && !winner) ? 'tie' :  
+                    (stepNumber == 9 && !winner) ? 'Tie' :  
                  winner ? "Winner: " + winner : "Next Player: " + xO}</h3>
         </div>
         </>
